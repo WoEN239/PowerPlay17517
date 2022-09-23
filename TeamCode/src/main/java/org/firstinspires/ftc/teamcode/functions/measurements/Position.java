@@ -52,9 +52,10 @@ public class Position implements Standart {
     }
 
     private void getAngle() {
+        //TODO why use gyro angle every iteration?
         if (Math.abs((encXL.getCurrentPosition() / encXR.getCurrentPosition()) - 1) > 0.2) {
             angle += ((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / circle / 2 * Math.PI * 2) / 2;
-            angle += (angle - gyro.getAngularOrientation().firstAngle) / 2;
+            angle += (angle - gyro.getAngularOrientation().firstAngle) / 2; //FIXME angle - angle = ???
         }
         distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
     }
