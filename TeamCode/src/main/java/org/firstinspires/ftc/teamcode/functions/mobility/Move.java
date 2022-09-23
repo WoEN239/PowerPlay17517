@@ -17,8 +17,9 @@ public class Move implements Standart {
     private DcMotorEx rightBack = null;
 
     public void start(){
-        setDirections(); //FIXME PotentialNullPointerException
         setConfig(robot);
+        setDirections();
+
     };
 
     public void activity(){}

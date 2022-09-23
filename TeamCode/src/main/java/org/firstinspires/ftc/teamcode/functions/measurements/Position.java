@@ -29,14 +29,16 @@ public class Position implements Standart {
     private double globalY = 0.0;
     private static final double circle = 100;
     private static final double encConst = 100;
+    private static final double gyroConst = 100;
+    private static final double gyroPriority = 0.6;
+    private static final int gyroTact = 5;
     private boolean fin = false;
+    private boolean gyroActive = false;
 
     public void start() {
         encFuck();
         gyroFuck();
     }
-
-    ;
 
     public void activity() {
         getDistance();
@@ -52,10 +54,13 @@ public class Position implements Standart {
     }
 
     private void getAngle() {
-        //TODO why use gyro angle every iteration?
-        if (Math.abs((encXL.getCurrentPosition() / encXR.getCurrentPosition()) - 1) > 0.2) {
-            angle += ((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / circle / 2 * Math.PI * 2) / 2;
-            angle += (angle - gyro.getAngularOrientation().firstAngle) / 2; //FIXME angle - angle = ???
+        gyroActive = robot.iteration%gyroTact==0;
+        if (Math.abs((encXL.getCurrentPosition() / encXR.getCurrentPosition()) - 1) > 0.1) {
+            if(gyroActive){
+                angle += ((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / circle / 2 * Math.PI * 2) * (1 - gyroPriority);
+                angle += (angle - gyro.getAngularOrientation().firstAngle) * gyroPriority;
+            }
+            else{ angle += ((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / circle / 2 * Math.PI * 2); }
         }
         distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
     }
