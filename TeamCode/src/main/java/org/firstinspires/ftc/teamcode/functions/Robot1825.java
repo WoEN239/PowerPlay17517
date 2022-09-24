@@ -47,10 +47,7 @@ public class Robot1825 {
     }
 
     public boolean finish() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return Arrays.stream(allFunctions).allMatch(Standart::finish);
-        }
-        else{ return false; }
+        return Arrays.stream(allFunctions).allMatch(Standart::finish);
     }
 
 }
