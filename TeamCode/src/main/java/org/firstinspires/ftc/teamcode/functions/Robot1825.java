@@ -5,6 +5,7 @@ import android.os.Build;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
 import org.firstinspires.ftc.teamcode.functions.mobility.GetFragment;
 import org.firstinspires.ftc.teamcode.functions.mobility.Move;
 
@@ -17,7 +18,8 @@ public class Robot1825 {
 
     private final GetFragment getFragment = new GetFragment(this);
     private final Move move = new Move(this);
-    private final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
+    public final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
+    public final LimitSwitch limitSwitch = new LimitSwitch(this);
 
     public int iteration = 1;
 

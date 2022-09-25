@@ -235,7 +235,7 @@ public class FtcRobotControllerActivity extends Activity
       }
     }
     else {
-      // Paranoia: we don't want the pending list to grow without bound when we don't
+      // Para0noia: we don't want the pending list to grow without bound when we don't
       // (yet) have an event loop
       while (receivedUsbAttachmentNotifications.size() > 100) {
         receivedUsbAttachmentNotifications.poll();

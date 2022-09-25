@@ -12,7 +12,6 @@ import org.firstinspires.ftc.teamcode.functions.Standart;
 
 public class Position implements Standart {
     public Robot1825 robot;
-
     public Position(Robot1825 robot) {
         this.robot = robot;
     }
@@ -82,6 +81,6 @@ public class Position implements Standart {
     private void gyroFuck(){
         gyro = robot.linearOpMode.hardwareMap.get(BNO055IMU.class, "imu");
         gyro.initialize(new BNO055IMU.Parameters());
-        gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.XYZ, AngleUnit.DEGREES);
+        gyro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.XYZ, AngleUnit.RADIANS);
     }
 }
