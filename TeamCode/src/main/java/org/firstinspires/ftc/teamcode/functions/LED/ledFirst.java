@@ -9,7 +9,7 @@ public class ledFirst implements Standart {
 
     public void start(){};
 
-    public void activity(Robot1825 robot1825){}
+    public void activity(){}
 
     public boolean finish(){ return true; };
 }
