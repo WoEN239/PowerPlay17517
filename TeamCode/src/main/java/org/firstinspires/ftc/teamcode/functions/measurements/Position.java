@@ -68,7 +68,7 @@ public class Position implements Standart {
             }
             else{ angle += encAngle; }
         }
-        distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
+        //distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
         distanceY0 -= (encXR.getCurrentPosition() - encXL.getCurrentPosition()) / encConst / 2;
     }
 
