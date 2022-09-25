@@ -25,11 +25,11 @@ public class Position implements Standart {
 
     double distanceX0 = 0.0;
     private double distanceY0 = 0.0;
-    private double angle = 0.0;
+    public double angle = 0.0;
     private double encAngle = 0.0;
     private double gyroAngle = 0.0;
-    private double globalX = 0.0;
-    private double globalY = 0.0;
+    public double globalX = 0.0;
+    public double globalY = 0.0;
     private double gyroIteration = 0.0;
     private static final double circle = 100;
     private static final double encConst = 100;
