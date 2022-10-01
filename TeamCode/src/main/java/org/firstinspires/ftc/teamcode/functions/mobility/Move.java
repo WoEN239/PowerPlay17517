@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.functions.mobility;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
@@ -19,7 +17,7 @@ public class Move implements Standart {
     public void start(){
         setConfig(robot);
         setDirections();
-
+        robot.lift.activity(Lift.LiftTarget.UP);
     };
 
     public void activity(){}

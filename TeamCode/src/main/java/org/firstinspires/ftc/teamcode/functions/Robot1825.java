@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
 import org.firstinspires.ftc.teamcode.functions.mobility.GetFragment;
+import org.firstinspires.ftc.teamcode.functions.mobility.Lift;
 import org.firstinspires.ftc.teamcode.functions.mobility.Move;
 
 
@@ -21,11 +22,12 @@ public class Robot1825 {
     private final Move move = new Move(this);
     public final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
     public final LimitSwitch limitSwitch = new LimitSwitch(this);
+    public final Lift lift = new Lift(this);
 
     public int iteration = 1;
 
     public final Standart[] allFunctions = new Standart[]{
-            move, position, getFragment,
+            move, position, getFragment, lift,
     };
     private List<LynxModule> revHubs = null;
 
