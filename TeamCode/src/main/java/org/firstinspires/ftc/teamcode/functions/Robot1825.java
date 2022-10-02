@@ -4,6 +4,8 @@ import android.os.Build;
 
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
 import org.firstinspires.ftc.teamcode.functions.mobility.GetFragment;
@@ -12,6 +14,7 @@ import org.firstinspires.ftc.teamcode.functions.mobility.Move;
 
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class Robot1825 {
@@ -49,6 +52,16 @@ public class Robot1825 {
         iteration++;
         for (Standart standart : allFunctions)
             standart.activity();
+    }
+
+    public DcMotorSimple.Direction revD(DcMotorSimple.Direction direction){
+        if(direction == DcMotorSimple.Direction.FORWARD){ return DcMotorSimple.Direction.REVERSE; }
+        else{ return DcMotorSimple.Direction.FORWARD; }
+    }
+
+    public boolean boolD(DcMotorSimple.Direction direction){
+        if(direction == DcMotorSimple.Direction.FORWARD){ return true; }
+        else{ return false; }
     }
 
     public boolean finish() {

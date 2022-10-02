@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.functions.mobility;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -12,25 +13,28 @@ public class Lift implements Standart {
     private DcMotorEx lift1 = null;
     private DcMotorEx lift2 = null;
     public int liftTargetLimit = 0;
+    public int oldLiftTargetLimit = 0;
+    public static double liftSpeed = 0.5;
 
-    public enum LiftTarget { UP, MIDDLE, DOWN }
-
+    public enum LiftTarget { UP, MIDDLE, DOWN; }
 
     public void start() {
         lift1 = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "liftLeft");
         lift2 = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "liftRight");
         lift1.setDirection(DcMotorSimple.Direction.FORWARD);
-        lift2.setDirection(DcMotorSimple.Direction.REVERSE);
+        lift2.setDirection(robot.revD(lift1.getDirection()));
     }
 
     public void activity(LiftTarget target){
         setLiftTargetLimit(target);
-        switch (liftTargetLimit) {
-            case 1: //etc
-        }
+        if(liftTargetLimit > oldLiftTargetLimit){ lift1.setDirection(DcMotorSimple.Direction.FORWARD); }
+        else{ lift1.setDirection(DcMotorSimple.Direction.REVERSE); }
+        lift2.setDirection(robot.revD(lift1.getDirection()));
+        while(!robot.limitSwitch.getLimit(liftTargetLimit)){ lift1.setVelocity(liftSpeed); lift2.setVelocity(liftSpeed); }
+        oldLiftTargetLimit = liftTargetLimit;
     }
 
-    public boolean finish(){ return true; }
+    public boolean finish(){ return oldLiftTargetLimit == liftTargetLimit; }
 
     private void setLiftTargetLimit(LiftTarget localTarget){
         if(localTarget == localTarget.UP){ liftTargetLimit = 1; }
