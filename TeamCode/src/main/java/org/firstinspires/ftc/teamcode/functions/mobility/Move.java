@@ -13,6 +13,7 @@ public class Move implements Standart {
     private DcMotorEx leftBack = null;
     private DcMotorEx rightFront = null;
     private DcMotorEx rightBack = null;
+    public double[] targets = new double[1];
 
     public void start(){
         setConfig(robot);
@@ -20,7 +21,12 @@ public class Move implements Standart {
         robot.lift.activity(Lift.LiftTarget.UP);
     };
 
-    public void activity(){}
+    public void activity(){
+        if(robot.driver_auto) { targets[0] = robot.control.getTargetX(); targets[1] = robot.control.getTargetY(); }
+        else { targets[0] = 1; targets[1] = 1; }
+        robot.pid.calculation(targets);
+        motorUsing(robot.pid.getVectorOX(), robot.pid.getVectorOY());
+    }
 
     public boolean finish(){ return true; }
 
@@ -38,7 +44,7 @@ public class Move implements Standart {
         rightBack = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "R2");
     }
 
-    private double distance(){
-        return 1.0;
+    private void motorUsing(double power1, double power2){
+
     }
 }

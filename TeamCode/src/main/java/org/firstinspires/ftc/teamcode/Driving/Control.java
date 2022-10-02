@@ -8,8 +8,9 @@ import org.firstinspires.ftc.teamcode.functions.Standart;
 public class Control{
     Robot1825 robot;
     public Control(Robot1825 robot){ this.robot = robot; }
-
     Gamepad gamepad1 = new Gamepad();
+
+    public double[] sticksTarget = new double[2];
 
     private final static double stickDistance = 10;
 
