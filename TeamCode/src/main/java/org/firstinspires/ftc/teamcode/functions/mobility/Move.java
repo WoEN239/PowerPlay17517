@@ -22,10 +22,9 @@ public class Move implements Standart {
     };
 
     public void activity(){
-        if(robot.driver_auto) { targets[0] = robot.control.getTargetX(); targets[1] = robot.control.getTargetY(); }
-        else { targets[0] = 1; targets[1] = 1; }
+        if(robot.ControlMode == robot.ControlMode.DRIVING) { targets[0] = robot.control.getTargetX(); targets[1] = robot.control.getTargetY(); }
         robot.pid.calculation(targets);
-        motorUsing(robot.pid.getVectorOX(), robot.pid.getVectorOY());
+        finalMovement(robot.pid.getVectorOX(), robot.pid.getVectorOY());
     }
 
     public boolean finish(){ return true; }
@@ -44,7 +43,10 @@ public class Move implements Standart {
         rightBack = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "R2");
     }
 
-    private void motorUsing(double power1, double power2){
-
+    public void setAutoTargets(double x, double y){
+        targets[0] = x; targets[1] = y;
     }
+
+    private void finalMovement(double power1, double power2){}
+
 }

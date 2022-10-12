@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Driving.Control;
+import org.firstinspires.ftc.teamcode.dash.Telemetry;
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
 import org.firstinspires.ftc.teamcode.functions.mobility.GetFragment;
 import org.firstinspires.ftc.teamcode.functions.mobility.Lift;
@@ -21,18 +22,20 @@ import java.util.List;
 
 public class Robot1825 {
     public LinearOpMode linearOpMode;
-    public Robot1825(LinearOpMode linearOpMode) {this.linearOpMode = linearOpMode;}
+    public Robot1825(LinearOpMode linearOpMode) { this.linearOpMode = linearOpMode; }
 
     private final GetFragment getFragment = new GetFragment(this);
-    private final Move move = new Move(this);
+    public final Move move = new Move(this);
     public final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
     public final LimitSwitch limitSwitch = new LimitSwitch(this);
     public final Lift lift = new Lift(this);
     public final Control control = new Control(this);
     public final PID pid = new PID(this);
+    public final Telemetry telemetry = new Telemetry(this);
 
     public int iteration = 1;
-    public boolean driver_auto; // FIXME replace it after creating opModes
+    public enum Mode{ AUTONOMOUS, DRIVING };
+    public Mode ControlMode;
 
     public final Standart[] allFunctions = new Standart[]{
             move, position, getFragment, lift,

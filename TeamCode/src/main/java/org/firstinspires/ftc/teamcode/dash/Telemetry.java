@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Dash;
+package org.firstinspires.ftc.teamcode.dash;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 
@@ -11,7 +11,7 @@ public class Telemetry implements Standart{
 
     private FtcDashboard dash;
     private org.firstinspires.ftc.robotcore.external.Telemetry dashboardTelemetry = null;
-    private org.firstinspires.ftc.robotcore.external.Telemetry opModeTelemetry = null;
+    public org.firstinspires.ftc.robotcore.external.Telemetry opModeTelemetry = null;
     private org.firstinspires.ftc.robotcore.external.Telemetry currentTelemetry = null;
 
     public void start() {
