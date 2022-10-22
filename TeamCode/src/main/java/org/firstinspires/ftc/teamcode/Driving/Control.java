@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPositi
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPosition;
 
 public class Control{
-    Robot1825 robot;
+    public Robot1825 robot;
     public Control(Robot1825 robot){ this.robot = robot; }
     Gamepad gamepad1 = new Gamepad();
 
