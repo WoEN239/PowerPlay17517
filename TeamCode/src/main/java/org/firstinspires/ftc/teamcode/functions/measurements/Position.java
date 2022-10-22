@@ -10,9 +10,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standart;
+import org.firstinspires.ftc.teamcode.functions.Standard;
 
-public class Position implements Standart {
+public class Position implements Standard {
     public Robot1825 robot;
     public Position(Robot1825 robot) {
         this.robot = robot;

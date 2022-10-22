@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.test;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standart;
+import org.firstinspires.ftc.teamcode.functions.Standard;
 
-public class PID implements Standart {
+public class PID implements Standard {
     Robot1825 robot;
     public PID(Robot1825 robot){ this.robot = robot; }
 

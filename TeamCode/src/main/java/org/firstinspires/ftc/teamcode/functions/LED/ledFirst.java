@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode.functions.LED;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standart;
+import org.firstinspires.ftc.teamcode.functions.Standard;
 
-public class ledFirst implements Standart {
+public class ledFirst implements Standard {
     public Robot1825 robot;
     public ledFirst(Robot1825 robot){this.robot = robot;}
 

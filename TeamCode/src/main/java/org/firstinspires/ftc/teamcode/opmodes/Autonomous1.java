@@ -2,19 +2,21 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.Driving.Control;
+
 @Autonomous
 public class Autonomous1 extends BaseAutonomous{
 
     Runnable[] firstPosition = {
-            () -> { robot.move.setAutoTargets(15,15); },
+            () -> { robot.move.setAutoTargets(15,15, 0); },
     };
 
     Runnable[] secondPosition = {
-            () -> { robot.move.setAutoTargets(20,10); },
+            () -> { robot.move.setAutoTargets(20,10, 0); },
     };
 
     Runnable[] thirdPosition = {
-            () -> { robot.move.setAutoTargets(10,20); },
+            () -> { robot.move.setAutoTargets(10,20, 0); },
     };
 
     @Override
@@ -29,5 +31,10 @@ public class Autonomous1 extends BaseAutonomous{
 
     @Override
     protected Runnable[] thirdPosition() { return thirdPosition;}
+
+    @Override
+    public void mainAction() {
+        super.mainAction();
+    }
 
 }

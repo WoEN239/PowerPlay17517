@@ -1,23 +1,24 @@
 package org.firstinspires.ftc.teamcode.functions;
 
-import android.os.Build;
-
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Driving.Control;
 import org.firstinspires.ftc.teamcode.dash.Telemetry;
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
+import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.ExtruderPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.GetFragment;
+import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.Lift;
 import org.firstinspires.ftc.teamcode.functions.mobility.Move;
+import org.firstinspires.ftc.teamcode.functions.mobility.SetServoPositions;
+import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPosition;
 import org.firstinspires.ftc.teamcode.test.PID;
+import org.firstinspires.ftc.teamcode.test.PReg;
 
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 public class Robot1825 {
@@ -32,19 +33,25 @@ public class Robot1825 {
     public final Control control = new Control(this);
     public final PID pid = new PID(this);
     public final Telemetry telemetry = new Telemetry(this);
+    public final SetServoPositions setServoPositions = new SetServoPositions(this);
+    public KeeperPosition keeperPosition = KeeperPosition.CLOSED;
+    public TurnerPosition turnerPosition = TurnerPosition.NORMAL;
+    public ExtruderPosition extruderPosition = ExtruderPosition.NOT_EXTRUDED;
+
+    public final PReg pReg = new PReg(this);
 
     public int iteration = 1;
     public enum Mode{ AUTONOMOUS, DRIVING };
     public Mode ControlMode;
 
-    public final Standart[] allFunctions = new Standart[]{
-            move, position, getFragment, lift,
+    public final Standard[] allFunctions = new Standard[]{
+            move, position, getFragment, lift, setServoPositions,
     };
     private List<LynxModule> revHubs = null;
 
     public void start() {
         revHubs = linearOpMode.hardwareMap.getAll(LynxModule.class);
-        for (Standart standart : allFunctions)
+        for (Standard standart : allFunctions)
             standart.start();
         for (LynxModule module : revHubs)
             module.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
@@ -58,7 +65,7 @@ public class Robot1825 {
     public void activity() {
         updateRevBulkCache();
         iteration++;
-        for (Standart standart : allFunctions)
+        for (Standard standart : allFunctions)
             standart.activity();
     }
 
@@ -73,7 +80,7 @@ public class Robot1825 {
     }
 
     public boolean finish() {
-        return Arrays.stream(allFunctions).allMatch(Standart::finish);
+        return Arrays.stream(allFunctions).allMatch(Standard::finish);
     }
 
 }

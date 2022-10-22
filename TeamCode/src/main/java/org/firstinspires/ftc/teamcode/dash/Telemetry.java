@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode.dash;
 import com.acmerobotics.dashboard.FtcDashboard;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standart;
+import org.firstinspires.ftc.teamcode.functions.Standard;
 
-public class Telemetry implements Standart{
+public class Telemetry implements Standard {
     public Robot1825 robot;
     public Telemetry(Robot1825 robot){this.robot = robot;}
 

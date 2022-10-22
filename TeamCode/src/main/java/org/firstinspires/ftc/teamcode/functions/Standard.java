@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.functions;
 
-public interface Standart {
+public interface Standard {
     void start();
     default void activity(){}
     default boolean finish(){ return false; };

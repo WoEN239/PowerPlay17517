@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.functions.mobility;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standart;
+import org.firstinspires.ftc.teamcode.functions.Standard;
 
-public class Lift implements Standart {
+public class Lift implements Standard {
     Robot1825 robot;
     public Lift(Robot1825 robot1825){ this.robot = robot1825;}
     private DcMotorEx lift1 = null;
