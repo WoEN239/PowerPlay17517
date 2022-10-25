@@ -9,6 +9,7 @@ public abstract class HandControlOpMode extends BaseOpMode{
     public ButtonSwitch keeperFunction = new ButtonSwitch(() -> gamepad1.triangle, (positionK) -> robot.keeperPosition = robot.boolToKeeperPosition(positionK));
     public ButtonSwitch turnerFunction = new ButtonSwitch(() -> gamepad1.square, (positionT) -> robot.turnerPosition = robot.boolToTurnerPosition(positionT));
     public ButtonSwitch extruderFunction = new ButtonSwitch(() -> gamepad1.circle, (positionE) -> robot.extruderPosition = robot.boolToExtruderPosition(positionE));
+    public ButtonSwitch controlMethod = new ButtonSwitch(() -> gamepad1.right_bumper, (control) -> robot.control.setControlMethod(control));
 
 
     @Override
@@ -16,13 +17,13 @@ public abstract class HandControlOpMode extends BaseOpMode{
         keeperFunction.activate();
         turnerFunction.activate();
         extruderFunction.activate();
+        controlMethod.activate();
         super.mainAction();
     }
 
     @Override
     public void startAction(){
         robot.ControlMode = Robot1825.Mode.DRIVING;
-        robot.control.controlMethod = Control.ControlMethod.STUPID;
         super.startAction();
     }
 

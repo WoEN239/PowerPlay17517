@@ -10,9 +10,9 @@ import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPositi
 public class Control{
     public Robot1825 robot;
     public Control(Robot1825 robot){ this.robot = robot; }
-    public Gamepad gamepad1 = null;
-    public enum ControlMethod{ STICKS, TOUCHPAD, STUPID, DRIVERno1, DRIVERno2 };
-    public ControlMethod controlMethod;
+    private Gamepad gamepad1 = null;
+    private enum ControlMethod{ STICKS, TOUCHPAD, STUPID, DRIVERno1, DRIVERno2 };
+    private ControlMethod controlMethod;
     private final static double stickDistance = 10;
     private final static double angleConst = 1.2;
 
@@ -39,19 +39,9 @@ public class Control{
         return gamepad1.right_stick_x;
     }
 
-    public KeeperPosition getKeeperStatus(){
-        if(gamepad1.triangle){ return KeeperPosition.OPENED; }
-        else{ return KeeperPosition.CLOSED; }
-    }
-
-    public TurnerPosition getTurnerStatus(){
-        if(gamepad1.b){ return TurnerPosition.NORMAL; }
-        else{ return TurnerPosition.TURNED; }
-    }
-
-    public ExtruderPosition getExtruderStatus(){
-        if(gamepad1.start){ return ExtruderPosition.NOT_EXTRUDED; }
-        else{ return ExtruderPosition.EXTRUDED; }
+    public void setControlMethod(boolean method){
+        if(method) controlMethod = ControlMethod.DRIVERno1;
+        else controlMethod = ControlMethod.DRIVERno2;
     }
 
 }

@@ -31,7 +31,7 @@ public class Robot1825 {
     public final Control control = new Control(this);
     public final ledFirst ledFirst = new ledFirst(this);
     public final Telemetry telemetry = new Telemetry(this);
-    public final ServoFunctions setServoPositions = new ServoFunctions(this);
+    public final ServoFunctions servoFunctions = new ServoFunctions(this);
     public KeeperPosition keeperPosition = KeeperPosition.CLOSED;
     public TurnerPosition turnerPosition = TurnerPosition.NORMAL;
     public ExtruderPosition extruderPosition = ExtruderPosition.NOT_EXTRUDED;
@@ -43,7 +43,7 @@ public class Robot1825 {
     public Mode ControlMode;
 
     public final Standart[] allFunctions = new Standart[]{
-            move, setServoPositions, telemetry, ledFirst,
+            move, servoFunctions, telemetry, ledFirst,
     };
     private List<LynxModule> revHubs = null;
 
