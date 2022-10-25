@@ -39,5 +39,4 @@ public abstract class BaseAutonomous extends BaseOpMode {
             while (!robot.finish() && opModeIsActive() && elapsedTime.seconds() < timeoutSeconds) robot.activity();
         }
     }
-
 }

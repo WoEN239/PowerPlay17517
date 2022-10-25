@@ -3,9 +3,9 @@ package org.firstinspires.ftc.teamcode.functions.measurements;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standard;
+import org.firstinspires.ftc.teamcode.functions.Standart;
 
-public class LimitSwitch implements Standard {
+public class LimitSwitch implements Standart {
     public Robot1825 robot;
     public LimitSwitch(Robot1825 robot){this.robot = robot;}
 

@@ -1,24 +1,40 @@
 package org.firstinspires.ftc.teamcode.functions.LED;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standard;
+import org.firstinspires.ftc.teamcode.functions.Standart;
 
-public class ledFirst implements Standard {
+public class ledFirst implements Standart {
     public Robot1825 robot;
     public ledFirst(Robot1825 robot){this.robot = robot;}
 
-    private DcMotorEx ledMotor = null;
+    private DcMotorEx firstLedMotor = null;
+    private DcMotorEx secondLedMotor = null;
 
-    private double ledForce = 0.0;
+    public LedMode ledMode = LedMode.BREATHING;
+    private ElapsedTime ledTimer = new ElapsedTime();
 
     public void start(){
-        ledMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "#1");
-        ledMotor.setDirection(DcMotorEx.Direction.FORWARD);
+        ledTimer.reset();
+        ledTimer.startTime();
+        firstLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "f1");
+        secondLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "f2");
+        firstLedMotor.setDirection(DcMotorEx.Direction.FORWARD);
+        secondLedMotor.setDirection(DcMotorEx.Direction.FORWARD);
     };
 
-    public void activity(){}
+    public void activity(){
+        switch (ledMode){
+            case DRIVING:
+                firstLedMotor.setPower((robot.move.getYV()));
+                secondLedMotor.setPower((1 - robot.move.getYV()));
+            case BREATHING:
+                firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
+                secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
+        }
+    }
 
     public boolean finish(){ return true; };
 }

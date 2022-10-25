@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Driving;
+package org.firstinspires.ftc.teamcode.driving;
 
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -10,19 +10,21 @@ import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPositi
 public class Control{
     public Robot1825 robot;
     public Control(Robot1825 robot){ this.robot = robot; }
-    Gamepad gamepad1 = new Gamepad();
-
-    public enum ControlMethod{ STICKS, TOUCHPAD, STUPID };
+    public Gamepad gamepad1 = null;
+    public enum ControlMethod{ STICKS, TOUCHPAD, STUPID, DRIVERno1, DRIVERno2 };
     public ControlMethod controlMethod;
     private final static double stickDistance = 10;
     private final static double angleConst = 1.2;
 
-    public void init(){ }
+    public void init(){
+         gamepad1 = robot.linearOpMode.gamepad1;
+    }
 
     public double getTargetY(){
         if(controlMethod == ControlMethod.STICKS){ return robot.position.globalY + gamepad1.left_stick_y * stickDistance; }
         else if(controlMethod == ControlMethod.TOUCHPAD){ return robot.position.globalY + gamepad1.touchpad_finger_1_y * stickDistance; }
-        else{ return gamepad1.left_stick_y; }
+        else if(controlMethod == ControlMethod.DRIVERno1){ return gamepad1.left_stick_y; }
+        else { return gamepad1.right_trigger - gamepad1.left_trigger; }
     }
 
     public double getTargetX(){
@@ -33,12 +35,13 @@ public class Control{
 
     public double getDrivingAngle(){
         //return robot.position.angle + (gamepad1.right_trigger - gamepad1.left_trigger);
-        return (gamepad1.right_trigger - gamepad1.left_trigger);
+        //return (gamepad1.right_trigger - gamepad1.left_trigger);
+        return gamepad1.right_stick_x;
     }
 
     public KeeperPosition getKeeperStatus(){
-        if(gamepad1.a){ return KeeperPosition.CLOSED; }
-        else{ return KeeperPosition.OPENED; }
+        if(gamepad1.triangle){ return KeeperPosition.OPENED; }
+        else{ return KeeperPosition.CLOSED; }
     }
 
     public TurnerPosition getTurnerStatus(){

@@ -2,13 +2,11 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Driving.Control;
-
 @Autonomous
 public class Autonomous1 extends BaseAutonomous{
 
     Runnable[] firstPosition = {
-            () -> { robot.move.setAutoTargets(15,15, 0); },
+            () -> { robot.move.setAutoTargets(-20,0, 0); },
     };
 
     Runnable[] secondPosition = {

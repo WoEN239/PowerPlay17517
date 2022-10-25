@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standard;
+import org.firstinspires.ftc.teamcode.functions.Standart;
 
-public class Lift implements Standard {
+public class Lift implements Standart {
     Robot1825 robot;
     public Lift(Robot1825 robot1825){ this.robot = robot1825;}
     private DcMotorEx lift1 = null;
@@ -21,14 +21,14 @@ public class Lift implements Standard {
         lift1 = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "liftLeft");
         lift2 = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "liftRight");
         lift1.setDirection(DcMotorSimple.Direction.FORWARD);
-        lift2.setDirection(robot.revD(lift1.getDirection()));
+        lift2.setDirection(lift1.getDirection().inverted());
     }
 
     public void activity(LiftTarget target){
         setLiftTargetLimit(target);
         if(liftTargetLimit > oldLiftTargetLimit){ lift1.setDirection(DcMotorSimple.Direction.FORWARD); }
         else{ lift1.setDirection(DcMotorSimple.Direction.REVERSE); }
-        lift2.setDirection(robot.revD(lift1.getDirection()));
+        lift2.setDirection(lift1.getDirection().inverted());
         while(!robot.limitSwitch.getLimit(liftTargetLimit)){ lift1.setVelocity(liftSpeed); lift2.setVelocity(liftSpeed); }
         oldLiftTargetLimit = liftTargetLimit;
     }

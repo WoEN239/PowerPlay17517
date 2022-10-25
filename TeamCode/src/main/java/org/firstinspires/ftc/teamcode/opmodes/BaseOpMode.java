@@ -2,16 +2,19 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.functions.LED.LedMode;
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
 
 public abstract class BaseOpMode extends LinearOpMode {
     protected final Robot1825 robot = new Robot1825(this);
 
     public void startAction() {
-        robot.activity();
+        robot.start();
     }
 
-    public void mainAction() { }
+    public void mainAction() {
+        robot.activity();
+    }
 
     @Override
     public void waitForStart(){

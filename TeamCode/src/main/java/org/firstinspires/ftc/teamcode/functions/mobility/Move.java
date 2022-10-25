@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode.functions.mobility;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
-import org.firstinspires.ftc.teamcode.functions.Standard;
+import org.firstinspires.ftc.teamcode.functions.Standart;
 
-public class Move implements Standard {
+public class Move implements Standart {
     public Robot1825 robot;
     public Move(Robot1825 robot){this.robot = robot;}
 
@@ -14,21 +13,27 @@ public class Move implements Standard {
     private DcMotorEx leftBack = null;
     private DcMotorEx rightFront = null;
     private DcMotorEx rightBack = null;
-    public double[] targets = new double[2];
+    public double[] targets = new double[3];
+    public double[] vectors = new double[3];
 
     public void start(){
         setConfig(robot);
         setDirections();
-        robot.lift.activity(Lift.LiftTarget.UP);
+        robot.control.init();
+        //robot.lift.start();
+        //robot.lift.activity(Lift.LiftTarget.UP);
     };
 
     public void activity(){
         if(robot.ControlMode == robot.ControlMode.DRIVING) {
-            targets[0] = robot.control.getTargetX(); targets[1] = robot.control.getTargetY();
-            targets[2] = robot.control.getDrivingAngle();
+            vectors[0] = robot.control.getTargetX(); vectors[1] = robot.control.getTargetY();
+            vectors[2] = robot.control.getDrivingAngle();
         }
-        if (robot.ControlMode == robot.ControlMode.AUTONOMOUS)finalMovement(robot.pReg.calculation(targets[0], robot.position.globalX), robot.pReg.calculation(targets[1], robot.position.globalY), targets[2]);
-        else{ finalMovement(robot.control.getTargetY(), robot.control.getTargetX(), robot.control.getDrivingAngle()); }
+        else {
+            vectors[0] = robot.pReg.calculation(targets[0], robot.position.globalX); vectors[1] = robot.pReg.calculation(targets[1], robot.position.globalY);
+            vectors[2] = robot.pReg.calculation(targets[2], robot.position.globalY);
+        }
+        finalMovement(vectors[1], vectors[0], vectors[2]);
     }
 
     public boolean finish(){ return (Math.abs(targets[0]-robot.position.globalX)<3)&&(Math.abs(targets[1]-robot.position.globalY)<3)&&(Math.abs(targets[0]-robot.position.globalX)<3);}
@@ -56,6 +61,14 @@ public class Move implements Standard {
         leftBack.setPower(front - side + turn);
         rightFront.setPower(front - side - turn);
         rightBack.setPower(front + side - turn);
+    }
+
+    public double getYV(){
+        return(vectors[1]);
+    }
+
+    public double getXV(){
+        return(vectors[2]);
     }
 
 }
