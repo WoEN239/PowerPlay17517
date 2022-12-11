@@ -8,6 +8,8 @@ import org.firstinspires.ftc.teamcode.driving.Control;
 import org.firstinspires.ftc.teamcode.dash.Telemetry;
 import org.firstinspires.ftc.teamcode.functions.LED.ledFirst;
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
+import org.firstinspires.ftc.teamcode.functions.mobility.FlowK;
+import org.firstinspires.ftc.teamcode.functions.mobility.LiftTest;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.ExtruderPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.Lift;
@@ -15,6 +17,10 @@ import org.firstinspires.ftc.teamcode.functions.mobility.Move;
 import org.firstinspires.ftc.teamcode.functions.mobility.ServoFunctions;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPosition;
 import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PReg;
+import org.firstinspires.ftc.teamcode.functions.openCV.AprilDetection;
+import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.Alliance;
+import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.ConePosition;
+import org.intellij.lang.annotations.JdkConstants;
 
 
 import java.util.Arrays;
@@ -27,11 +33,15 @@ public class Robot1825 {
     public final Move move = new Move(this);
     public final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
     public final LimitSwitch limitSwitch = new LimitSwitch(this);
-    public final Lift lift = new Lift(this);
+    //public final Lift lift = new Lift(this);
+    public final LiftTest liftTest = new LiftTest(this);
     public final Control control = new Control(this);
     public final ledFirst ledFirst = new ledFirst(this);
     public final Telemetry telemetry = new Telemetry(this);
     public final ServoFunctions servoFunctions = new ServoFunctions(this);
+    public final FlowK flowK = new FlowK(this);
+    public final AprilDetection aprilDetection = new AprilDetection(this);
+    public ConePosition conePosition = ConePosition.UNKNOWN;
     public KeeperPosition keeperPosition = KeeperPosition.CLOSED;
     public TurnerPosition turnerPosition = TurnerPosition.NORMAL;
     public ExtruderPosition extruderPosition = ExtruderPosition.NOT_EXTRUDED;

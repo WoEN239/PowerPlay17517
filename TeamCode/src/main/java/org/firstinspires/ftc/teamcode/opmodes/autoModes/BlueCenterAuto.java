@@ -1,9 +1,13 @@
-package org.firstinspires.ftc.teamcode.opmodes;
+package org.firstinspires.ftc.teamcode.opmodes.autoModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.opmodes.BaseAutonomous;
+import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.Alliance;
+import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.StartPosition;
+
 @Autonomous
-public class Autonomous1 extends BaseAutonomous{
+public class BlueCenterAuto extends BaseAutonomous {
 
     Runnable[] firstPosition = {
             () -> { robot.move.setAutoTargets(-20,0, 0); },
@@ -32,6 +36,8 @@ public class Autonomous1 extends BaseAutonomous{
 
     @Override
     public void mainAction() {
+        super.alliance = Alliance.BLUE;
+        super.startPosition = StartPosition.TO_CENTER;
         super.mainAction();
     }
 

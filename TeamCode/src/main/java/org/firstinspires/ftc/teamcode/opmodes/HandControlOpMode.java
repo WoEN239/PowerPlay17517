@@ -18,6 +18,9 @@ public abstract class HandControlOpMode extends BaseOpMode{
         turnerFunction.activate();
         extruderFunction.activate();
         controlMethod.activate();
+        if(gamepad1.right_trigger>0) robot.liftTest.setLiftParameters(true, gamepad1.right_trigger);
+        else if(gamepad1.left_trigger>0) robot.liftTest.setLiftParameters(false, gamepad1.left_trigger);
+        else robot.liftTest.setLiftParameters(true,0);
         super.mainAction();
     }
 

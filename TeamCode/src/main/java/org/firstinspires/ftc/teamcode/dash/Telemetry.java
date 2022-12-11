@@ -10,7 +10,8 @@ public class Telemetry implements Standart {
     public Telemetry(Robot1825 robot){this.robot = robot;}
 
     private FtcDashboard dash;
-    private org.firstinspires.ftc.robotcore.external.Telemetry dashboardTelemetry = null;
+    private int iterationT = 0;
+    public org.firstinspires.ftc.robotcore.external.Telemetry dashboardTelemetry = null;
     public org.firstinspires.ftc.robotcore.external.Telemetry opModeTelemetry = null;
     private org.firstinspires.ftc.robotcore.external.Telemetry currentTelemetry = null;
 
@@ -21,9 +22,11 @@ public class Telemetry implements Standart {
     }
 
     public void activity(){
+        iterationT++;
         movementTelemetry();
         opModeTelemetry.update();
         dashboardTelemetry.update();
+        //if(iterationT%5==0){ robot.flowK.activity(); }
     }
 
     public boolean finish(){ return true; }
