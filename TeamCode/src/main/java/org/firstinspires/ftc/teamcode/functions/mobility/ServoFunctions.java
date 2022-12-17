@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.functions.mobility;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
@@ -8,16 +9,17 @@ import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.ExtruderPosi
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPosition;
 
+@Config
 public class ServoFunctions implements Standart {
     public Robot1825 robot;
     private boolean finished;
     public ServoFunctions(Robot1825 robot){this.robot = robot;}
-    private static double KPositionClosed = 0.25;
-    private static double KPositionOpened = 0.0;
-    private static double TPositionNormal = 0.77;
-    private static double TPositionTurned = 0.0;
-    private static double ExPositionExtruded = 0.05;
-    private static double ExPositionNonExtruded = 0.3;
+    public static double KPositionClosed = 0.86;
+    public static double KPositionOpened = 0.6;
+    public static double TPositionNormal = 0.74;
+    public static double TPositionTurned = 0.0;
+    public static double ExPositionExtruded = 0.0;
+    public static double ExPositionNonExtruded = 0.45;
     private static int n = 3;
     public Servo[] servos = new Servo[n];
     private String[] ids = { "Keeper", "Extruder", "Turner" };
@@ -30,15 +32,15 @@ public class ServoFunctions implements Standart {
     public void activity(){
 
         if(robot.keeperPosition == KeeperPosition.CLOSED){ changedDouble = KPositionClosed; robot.telemetry.opModeTelemetry.addData("I. Status", "CLOSED"); }
-        else { changedDouble = KPositionOpened; robot.telemetry.opModeTelemetry.addData("II. Status", "OPENED"); }
+        else { changedDouble = KPositionOpened; robot.telemetry.opModeTelemetry.addData("I. Status", "OPENED"); }
         servos[0].setPosition(changedDouble);
 
-        if(robot.extruderPosition == ExtruderPosition.EXTRUDED){ changedDouble = ExPositionExtruded; robot.telemetry.opModeTelemetry.addData("Status", "EXTRUDED"); }
-        else { changedDouble = ExPositionNonExtruded; robot.telemetry.opModeTelemetry.addData("III. Status", "NOT_EXTRUDED"); }
+        if(robot.extruderPosition == ExtruderPosition.EXTRUDED){ changedDouble = ExPositionExtruded; robot.telemetry.opModeTelemetry.addData("II.Status", "EXTRUDED"); }
+        else { changedDouble = ExPositionNonExtruded; robot.telemetry.opModeTelemetry.addData("II. Status", "NOT_EXTRUDED"); }
         servos[1].setPosition(changedDouble);
 
-        if(robot.turnerPosition == TurnerPosition.TURNED){ changedDouble = TPositionTurned; robot.telemetry.opModeTelemetry.addData("Status", "NORMAL"); }
-        else { changedDouble = TPositionNormal; robot.telemetry.opModeTelemetry.addData("Status", "TURNED"); }
+        if(robot.turnerPosition == TurnerPosition.TURNED){ changedDouble = TPositionTurned; robot.telemetry.opModeTelemetry.addData("III. Status", "NORMAL"); }
+        else { changedDouble = TPositionNormal; robot.telemetry.opModeTelemetry.addData("III. Status", "TURNED"); }
         servos[2].setPosition(changedDouble);
 
         robot.telemetry.opModeTelemetry.update();

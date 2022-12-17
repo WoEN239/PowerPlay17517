@@ -20,7 +20,6 @@ import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PReg;
 import org.firstinspires.ftc.teamcode.functions.openCV.AprilDetection;
 import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.Alliance;
 import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.ConePosition;
-import org.intellij.lang.annotations.JdkConstants;
 
 
 import java.util.Arrays;
@@ -53,7 +52,7 @@ public class Robot1825 {
     public Mode ControlMode;
 
     public final Standart[] allFunctions = new Standart[]{
-            move, servoFunctions, telemetry, ledFirst,
+            move, servoFunctions, telemetry, ledFirst, liftTest
     };
     private List<LynxModule> revHubs = null;
 

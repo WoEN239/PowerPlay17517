@@ -28,11 +28,11 @@ public class ledFirst implements Standart {
     public void activity(){
         switch (ledMode){
             case DRIVING:
-                firstLedMotor.setPower((robot.move.getYV()));
-                secondLedMotor.setPower((1 - robot.move.getYV()));
+                //firstLedMotor.setPower((robot.move.getYV()));
+                //secondLedMotor.setPower((1 - robot.move.getYV()));
             case BREATHING:
-                firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
-                secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
+                //firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
+                //secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
         }
     }
 

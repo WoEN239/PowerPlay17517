@@ -26,6 +26,7 @@ public class LiftTest implements Standart {
         if(d) lift1.setDirection(DcMotorSimple.Direction.FORWARD);
         else lift1.setDirection(DcMotorSimple.Direction.REVERSE);
         lift2.setDirection(lift1.getDirection().inverted());
+        p*=0;
         lift1.setPower(p); lift2.setPower(p);
     }
 

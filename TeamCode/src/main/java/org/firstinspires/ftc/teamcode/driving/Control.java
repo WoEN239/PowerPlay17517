@@ -12,7 +12,7 @@ public class Control{
     public Control(Robot1825 robot){ this.robot = robot; }
     private Gamepad gamepad1 = null;
     private enum ControlMethod{ STICKS, TOUCHPAD, STUPID, DRIVERno1, DRIVERno2 };
-    private ControlMethod controlMethod;
+    private ControlMethod controlMethod = ControlMethod.DRIVERno1;
     private final static double stickDistance = 10;
     private final static double angleConst = 1.2;
 
@@ -23,7 +23,7 @@ public class Control{
     public double getTargetY(){
         if(controlMethod == ControlMethod.STICKS){ return robot.position.globalY + gamepad1.left_stick_y * stickDistance; }
         else if(controlMethod == ControlMethod.TOUCHPAD){ return robot.position.globalY + gamepad1.touchpad_finger_1_y * stickDistance; }
-        else if(controlMethod == ControlMethod.DRIVERno1){ return gamepad1.left_stick_y; }
+        else if(controlMethod == ControlMethod.DRIVERno1){ return -gamepad1.left_stick_y; }
         else { return gamepad1.right_trigger - gamepad1.left_trigger; }
     }
 
@@ -41,7 +41,7 @@ public class Control{
 
     public void setControlMethod(boolean method){
         if(method) controlMethod = ControlMethod.DRIVERno1;
-        else controlMethod = ControlMethod.DRIVERno2;
+        else controlMethod = ControlMethod.DRIVERno1;
     }
 
 }
