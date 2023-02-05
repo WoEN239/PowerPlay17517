@@ -13,7 +13,7 @@ public class Lift implements Standart {
     private DcMotorEx lift2 = null;
     public int liftTargetLimit = 0;
     public int oldLiftTargetLimit = 0;
-    public static double liftSpeed = 0.5;
+    public static double liftSpeed = 0.0;
 
     public enum LiftTarget { UP, MIDDLE, DOWN; }
 
@@ -24,13 +24,10 @@ public class Lift implements Standart {
         lift2.setDirection(lift1.getDirection().inverted());
     }
 
-    public void activity(LiftTarget target){
-        setLiftTargetLimit(target);
-        if(liftTargetLimit > oldLiftTargetLimit){ lift1.setDirection(DcMotorSimple.Direction.FORWARD); }
-        else{ lift1.setDirection(DcMotorSimple.Direction.REVERSE); }
-        lift2.setDirection(lift1.getDirection().inverted());
-        while(!robot.limitSwitch.getLimit(liftTargetLimit)){ lift1.setVelocity(liftSpeed); lift2.setVelocity(liftSpeed); }
-        oldLiftTargetLimit = liftTargetLimit;
+    public void activity(){
+        liftSpeed = robot.control.gamepad1.right_trigger + 0.2;
+        lift1.setPower(liftSpeed);
+        lift2.setPower(liftSpeed);
     }
 
     public boolean finish(){ return oldLiftTargetLimit == liftTargetLimit; }

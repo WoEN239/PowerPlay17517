@@ -32,8 +32,7 @@ public class Robot1825 {
     public final Move move = new Move(this);
     public final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
     public final LimitSwitch limitSwitch = new LimitSwitch(this);
-    //public final Lift lift = new Lift(this);
-    public final LiftTest liftTest = new LiftTest(this);
+    public final Lift lift = new Lift(this);
     public final Control control = new Control(this);
     public final ledFirst ledFirst = new ledFirst(this);
     public final Telemetry telemetry = new Telemetry(this);
@@ -52,7 +51,7 @@ public class Robot1825 {
     public Mode ControlMode;
 
     public final Standart[] allFunctions = new Standart[]{
-            move, servoFunctions, telemetry, ledFirst, liftTest
+            move, servoFunctions, telemetry, ledFirst, lift, position
     };
     private List<LynxModule> revHubs = null;
 

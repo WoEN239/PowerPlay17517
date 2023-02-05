@@ -18,9 +18,10 @@ public class Position implements Standart {
         this.robot = robot;
     }
 
-    private DcMotorEx encXR = null;
-    private DcMotorEx encXL = null;
-    private DcMotorEx encY = null;
+    private DcMotorEx encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXR");
+    private DcMotorEx encXL = encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXL");
+    private DcMotorEx encY = encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "R1");
+
     private BNO055IMU gyro;
 
     double distanceX0 = 0.0;
@@ -31,9 +32,9 @@ public class Position implements Standart {
     public double globalX = 0.0;
     public double globalY = 0.0;
     private double gyroIteration = 0.0;
-    private static final double circle = 100;
-    private static final double encConst = 100;
-    private static final double gyroPriority = 0.6;
+    private static final double circle = 130;
+    private static final double encConst = 0.01;
+    private static final double gyroPriority = 0.5;
     private static final int gyroTact = 5;
     private boolean fin = false;
     private boolean gyroActive = false;
@@ -68,7 +69,7 @@ public class Position implements Standart {
             }
             else{ angle += encAngle; }
         }
-        //distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
+        distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
         distanceY0 -= (encXR.getCurrentPosition() - encXL.getCurrentPosition()) / encConst / 2;
     }
 

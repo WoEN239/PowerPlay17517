@@ -19,8 +19,8 @@ public class ledFirst implements Standart {
     public void start(){
         ledTimer.reset();
         ledTimer.startTime();
-        firstLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "f1");
-        secondLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "f2");
+        firstLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXL");
+        secondLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXR");
         firstLedMotor.setDirection(DcMotorEx.Direction.FORWARD);
         secondLedMotor.setDirection(DcMotorEx.Direction.FORWARD);
     };
@@ -31,8 +31,8 @@ public class ledFirst implements Standart {
                 //firstLedMotor.setPower((robot.move.getYV()));
                 //secondLedMotor.setPower((1 - robot.move.getYV()));
             case BREATHING:
-                //firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
-                //secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
+                firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
+                secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
         }
     }
 

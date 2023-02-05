@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPositi
 public class Control{
     public Robot1825 robot;
     public Control(Robot1825 robot){ this.robot = robot; }
-    private Gamepad gamepad1 = null;
-    private enum ControlMethod{ STICKS, TOUCHPAD, STUPID, DRIVERno1, DRIVERno2 };
+    public Gamepad gamepad1 = null;
+    private enum ControlMethod{ STICKS, TOUCHPAD, DRIVERno1 };
     private ControlMethod controlMethod = ControlMethod.DRIVERno1;
     private final static double stickDistance = 10;
     private final static double angleConst = 1.2;
