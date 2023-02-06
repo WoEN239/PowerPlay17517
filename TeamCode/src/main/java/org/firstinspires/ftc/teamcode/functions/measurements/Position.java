@@ -14,13 +14,19 @@ import org.firstinspires.ftc.teamcode.functions.Standart;
 
 public class Position implements Standart {
     public Robot1825 robot;
+
     public Position(Robot1825 robot) {
         this.robot = robot;
+        robot.linearOpMode.sleep(0);
+        robot.linearOpMode.hardwareMap.getAll(DcMotor.class);
+        encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXR");
+        encXL = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXL");
+        encY = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "R1");
     }
 
-    private DcMotorEx encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXR");
-    private DcMotorEx encXL = encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXL");
-    private DcMotorEx encY = encXR = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "R1");
+    private final DcMotorEx encXR;
+    private final DcMotorEx encXL;
+    private final DcMotorEx encY;
 
     private BNO055IMU gyro;
 
@@ -59,22 +65,23 @@ public class Position implements Standart {
     }
 
     private void getAngle() {
-        gyroActive = robot.iteration % gyroTact==0;
-        if (Math.abs((encXL.getCurrentPosition() / encXR.getCurrentPosition()) - 1) > 0.1) {
-            encAngle = ((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / 2 / encConst / circle * Math.PI * 2);
-            if(gyroActive){
+        gyroActive = robot.iteration % gyroTact == 0;
+        if (true) /* (Math.abs((encXL.getCurrentPosition() / encXR.getCurrentPosition()) - 1.0) > 0.1) */ {
+            //TODO fix
+            encAngle = ((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / 2.0 / encConst / circle * Math.PI * 2.0);
+            if (gyroActive) {
                 angle += encAngle * (1 - gyroPriority);
-                gyroAngle = (angle - gyro.getAngularOrientation().firstAngle - gyroIteration * PI * 2);
+                gyroAngle = (angle - gyro.getAngularOrientation().firstAngle - gyroIteration * PI * 2.0);
                 angle += gyroAngle * gyroPriority;
-            }
-            else{ angle += encAngle; }
+            } else
+                angle += encAngle;
         }
-        distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2);
-        distanceY0 -= (encXR.getCurrentPosition() - encXL.getCurrentPosition()) / encConst / 2;
+        distanceX0 -= Math.abs((encXL.getCurrentPosition() - encXR.getCurrentPosition()) / encConst / 2.0);
+        distanceY0 -= (encXR.getCurrentPosition() - encXL.getCurrentPosition()) / encConst / 2.0;
     }
 
     private void getDistance() {
-        distanceX0 = (encXL.getCurrentPosition() + encXR.getCurrentPosition()) / encConst / 2;
+        distanceX0 = (encXL.getCurrentPosition() + encXR.getCurrentPosition()) / encConst / 2.0;
         distanceY0 = encY.getCurrentPosition() / encConst;
         resetEncoders();
     }
@@ -101,7 +108,10 @@ public class Position implements Standart {
     }
 
     private void angleСor(){
+        /*
             while (angle > PI) gyroIteration++;
             while (angle < -PI) gyroIteration--;
+            //TODO fix
+         */
     }
 }
