@@ -4,41 +4,56 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.driving.Control;
 import org.firstinspires.ftc.teamcode.dash.Telemetry;
+import org.firstinspires.ftc.teamcode.driving.Control;
 import org.firstinspires.ftc.teamcode.functions.LED.ledFirst;
+import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PReg;
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
+import org.firstinspires.ftc.teamcode.functions.measurements.Position;
 import org.firstinspires.ftc.teamcode.functions.mobility.FlowK;
-import org.firstinspires.ftc.teamcode.functions.mobility.LiftTest;
-import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.ExtruderPosition;
-import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.Lift;
 import org.firstinspires.ftc.teamcode.functions.mobility.Move;
 import org.firstinspires.ftc.teamcode.functions.mobility.ServoFunctions;
+import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.ExtruderPosition;
+import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPosition;
-import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PReg;
 import org.firstinspires.ftc.teamcode.functions.openCV.AprilDetection;
-import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.Alliance;
 import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.ConePosition;
-
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Robot1825 {
     public LinearOpMode linearOpMode;
-    public Robot1825(LinearOpMode linearOpMode) { this.linearOpMode = linearOpMode; }
 
-    public final Move move = new Move(this);
-    public final org.firstinspires.ftc.teamcode.functions.measurements.Position position = new  org.firstinspires.ftc.teamcode.functions.measurements.Position(this);
-    public final LimitSwitch limitSwitch = new LimitSwitch(this);
-    public final Lift lift = new Lift(this);
-    public final Control control = new Control(this);
-    public final ledFirst ledFirst = new ledFirst(this);
-    public final Telemetry telemetry = new Telemetry(this);
-    public final ServoFunctions servoFunctions = new ServoFunctions(this);
-    public final FlowK flowK = new FlowK(this);
-    public final AprilDetection aprilDetection = new AprilDetection(this);
+    public final Move move;
+    public final Position position;
+    public final LimitSwitch limitSwitch;
+    public final Lift lift;
+    public final Control control;
+    public final ledFirst ledFirst;
+    public final Telemetry telemetry;
+    public final ServoFunctions servoFunctions;
+    public final FlowK flowK;
+    public final AprilDetection aprilDetection;
+
+    public Robot1825(LinearOpMode linearOpMode) {
+        this.linearOpMode = linearOpMode;
+        move = new Move(this);
+        position = new Position(this);
+        limitSwitch = new LimitSwitch(this);
+        lift = new Lift(this);
+        control = new Control(this);
+        ledFirst = new ledFirst(this);
+        telemetry = new Telemetry(this);
+        servoFunctions = new ServoFunctions(this);
+        flowK = new FlowK(this);
+        aprilDetection = new AprilDetection(this);
+        allFunctions = new Standart[]{
+                move, servoFunctions, telemetry, ledFirst, lift, position
+        };
+    }
+
     public ConePosition conePosition = ConePosition.UNKNOWN;
     public KeeperPosition keeperPosition = KeeperPosition.CLOSED;
     public TurnerPosition turnerPosition = TurnerPosition.NORMAL;
@@ -47,12 +62,13 @@ public class Robot1825 {
     public final PReg pReg = new PReg(this);
 
     public int iteration = 1;
-    public enum Mode{ AUTONOMOUS, DRIVING };
+
+    public enum Mode {AUTONOMOUS, DRIVING}
+
     public Mode ControlMode;
 
-    public final Standart[] allFunctions = new Standart[]{
-            move, servoFunctions, telemetry, ledFirst, lift, position
-    };
+    public final Standart[] allFunctions;
+
     private List<LynxModule> revHubs = null;
 
     public void start() {
