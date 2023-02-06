@@ -14,10 +14,10 @@ public class ServoFunctions implements Standart {
     public Robot1825 robot;
     private boolean finished;
     public ServoFunctions(Robot1825 robot){this.robot = robot;}
-    public static double KPositionClosed = 0.9;
+    public static double KPositionClosed = 0.725;
     public static double KPositionOpened = 0.6;
     public static double TPositionNormal = 0.0;
-    public static double TPositionTurned = 0.73;
+    public static double TPositionTurned = 0.66;
     public static double ExPositionExtruded = 0.3;
     public static double ExPositionNonExtruded = 0.9;
     private static int n = 3;
