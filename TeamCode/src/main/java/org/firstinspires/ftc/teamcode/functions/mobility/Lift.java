@@ -25,7 +25,7 @@ public class Lift implements Standart {
     }
 
     public void activity(){
-        liftSpeed = robot.control.gamepad1.right_trigger + 0.2;
+        liftSpeed = robot.control.gamepad1.right_trigger - robot.control.gamepad1.left_trigger + 0.2;
         lift1.setPower(liftSpeed);
         lift2.setPower(liftSpeed);
     }
