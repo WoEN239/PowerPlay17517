@@ -7,13 +7,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org.firstinspires.ftc.teamcode.dash.Telemetry;
 import org.firstinspires.ftc.teamcode.driving.Control;
 import org.firstinspires.ftc.teamcode.functions.LED.ledFirst;
-import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PReg;
 import org.firstinspires.ftc.teamcode.functions.measurements.LimitSwitch;
 import org.firstinspires.ftc.teamcode.functions.measurements.Position;
 import org.firstinspires.ftc.teamcode.functions.mobility.FlowK;
 import org.firstinspires.ftc.teamcode.functions.mobility.Lift;
 import org.firstinspires.ftc.teamcode.functions.mobility.Move;
 import org.firstinspires.ftc.teamcode.functions.mobility.ServoFunctions;
+import org.firstinspires.ftc.teamcode.functions.mobility.TAuto;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.ExtruderPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.KeeperPosition;
 import org.firstinspires.ftc.teamcode.functions.mobility.servoEnums.TurnerPosition;
@@ -36,6 +36,7 @@ public class Robot1825 {
     public final ServoFunctions servoFunctions;
     public final FlowK flowK;
     public final AprilDetection aprilDetection;
+    public TAuto tAuto;
 
     public Robot1825(LinearOpMode linearOpMode) {
         this.linearOpMode = linearOpMode;
@@ -49,8 +50,9 @@ public class Robot1825 {
         servoFunctions = new ServoFunctions(this);
         flowK = new FlowK(this);
         aprilDetection = new AprilDetection(this);
+        tAuto = new TAuto(this);
         allFunctions = new Standart[]{
-                move, servoFunctions, telemetry, ledFirst, lift, position
+                move, servoFunctions, telemetry, ledFirst, lift, position, tAuto
         };
     }
 
@@ -58,8 +60,6 @@ public class Robot1825 {
     public KeeperPosition keeperPosition = KeeperPosition.CLOSED;
     public TurnerPosition turnerPosition = TurnerPosition.NORMAL;
     public ExtruderPosition extruderPosition = ExtruderPosition.NOT_EXTRUDED;
-
-    public final PReg pReg = new PReg(this);
 
     public int iteration = 1;
 

@@ -35,13 +35,13 @@ public class ServoFunctions implements Standart {
         else { changedDouble = KPositionOpened; robot.telemetry.opModeTelemetry.addData("I. Status", "OPENED"); }
         servos[0].setPosition(changedDouble);
 
-        if(robot.extruderPosition == ExtruderPosition.EXTRUDED){ changedDouble = ExPositionExtruded; robot.telemetry.opModeTelemetry.addData("II.Status", "EXTRUDED"); }
+        if(robot.extruderPosition == ExtruderPosition.EXTRUDED && Math.abs(servos[2].getPosition() - TPositionTurned) < 0.1){ changedDouble = ExPositionExtruded; robot.telemetry.opModeTelemetry.addData("II.Status", "EXTRUDED"); }
         else { changedDouble = ExPositionNonExtruded; robot.telemetry.opModeTelemetry.addData("II. Status", "NOT_EXTRUDED"); }
         servos[1].setPosition(changedDouble);
 
         if(robot.turnerPosition == TurnerPosition.TURNED){ changedDouble = TPositionTurned; robot.telemetry.opModeTelemetry.addData("III. Status", "NORMAL"); }
         else { changedDouble = TPositionNormal; robot.telemetry.opModeTelemetry.addData("III. Status", "TURNED"); }
-        servos[2].setPosition(changedDouble);
+        servos[2].setPosition(changedDouble);// ^ Depends on 'extruderPosition'
 
         robot.telemetry.opModeTelemetry.update();
     }

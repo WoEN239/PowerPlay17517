@@ -33,6 +33,12 @@ public class ledFirst implements Standart {
             case BREATHING:
                 firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
                 secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
+            case Ist:
+                firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/200)));
+                secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));
+            case IInd:
+                firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
+                secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/200)));
         }
     }
 
