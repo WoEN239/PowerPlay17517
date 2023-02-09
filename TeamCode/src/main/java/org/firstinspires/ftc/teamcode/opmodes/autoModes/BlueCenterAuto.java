@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.opmodes.opModeEnums.StartPosition;
 public class BlueCenterAuto extends BaseAutonomous {
 
     Runnable[] firstPosition = {
-            () -> { /*robot.move.setAutoTargets(-20,0, 0); */},
+            () -> { robot.move.setAutoTargets(-20,0, 0); },
     };
 
     Runnable[] secondPosition = {

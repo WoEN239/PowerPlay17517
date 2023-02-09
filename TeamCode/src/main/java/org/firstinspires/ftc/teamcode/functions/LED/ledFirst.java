@@ -23,13 +23,13 @@ public class ledFirst implements Standart {
         secondLedMotor = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "EncXR");
         firstLedMotor.setDirection(DcMotorEx.Direction.FORWARD);
         secondLedMotor.setDirection(DcMotorEx.Direction.FORWARD);
-    };
+    }
 
     public void activity(){
         switch (ledMode){
             case DRIVING:
-                //firstLedMotor.setPower((robot.move.getYV()));
-                //secondLedMotor.setPower((1 - robot.move.getYV()));
+                firstLedMotor.setPower(1);
+                secondLedMotor.setPower(1);
             case BREATHING:
                 firstLedMotor.setPower(Math.abs(Math.sin(ledTimer.milliseconds()/450)));
                 secondLedMotor.setPower(Math.abs(Math.cos(ledTimer.milliseconds()/450)));

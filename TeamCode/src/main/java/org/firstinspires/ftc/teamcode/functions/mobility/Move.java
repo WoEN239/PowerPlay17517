@@ -2,12 +2,14 @@ package org.firstinspires.ftc.teamcode.functions.mobility;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PID;
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
 import org.firstinspires.ftc.teamcode.functions.Standart;
 
 public class Move implements Standart {
     public Robot1825 robot;
     public Move(Robot1825 robot){this.robot = robot;}
+    public PID moveReg = new PID(robot);
 
     private DcMotorEx leftFront = null;
     private DcMotorEx leftBack = null;
@@ -30,8 +32,9 @@ public class Move implements Standart {
             vectors[2] = robot.control.getDrivingAngle();
         }
         else {
-            vectors[0] = robot.pReg.calculation(targets[0], robot.position.globalX); vectors[1] = robot.pReg.calculation(targets[1], robot.position.globalY);
-            vectors[2] = robot.pReg.calculation(targets[2], robot.position.globalY);
+            vectors[0] = moveReg.calculation(targets[0], robot.position.globalX);
+            vectors[1] = moveReg.calculation(targets[1], robot.position.globalY);
+            vectors[2] = moveReg.calculation(targets[2], robot.position.globalY);
         }
         finalMovement(vectors[1], vectors[0], vectors[2]);
     }
@@ -62,13 +65,4 @@ public class Move implements Standart {
         rightFront.setPower(front - side - turn);
         rightBack.setPower(front + side - turn);
     }
-
-    public double getYV(){
-        return(vectors[1]);
-    }
-
-    public double getXV(){
-        return(vectors[2]);
-    }
-
 }

@@ -29,7 +29,6 @@ public abstract class BaseAutonomous extends BaseOpMode {
 
     @Override
     public void mainAction(){
-
         autoAction(firstPosition());
         super.mainAction();
     }
