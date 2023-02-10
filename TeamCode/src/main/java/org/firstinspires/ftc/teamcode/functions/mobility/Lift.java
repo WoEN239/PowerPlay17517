@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.functions.mobility;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.functions.OtherFunctions.PID;
 import org.firstinspires.ftc.teamcode.functions.Robot1825;
 import org.firstinspires.ftc.teamcode.functions.Standart;
 
@@ -15,7 +15,7 @@ public class Lift implements Standart {
     public int liftTargetLimit = 0;
     public int oldLiftTargetLimit = 0;
     public static double liftSpeed = 0.5;
-    private double usefulVector=0;
+    private double usefulVector = 0.0;
     private double upPosition = 0.0;
     private double middleUpPosition = 0.0;
     private double middleDownPosition = 0.0;
@@ -28,9 +28,25 @@ public class Lift implements Standart {
         lift2 = robot.linearOpMode.hardwareMap.get(DcMotorEx.class, "liftRight");
         lift1.setDirection(DcMotorSimple.Direction.FORWARD);
         lift2.setDirection(lift1.getDirection().inverted());
+        resetEncoders();
     }
 
-    public void activity(){
+    public void resetEncoders() {
+        lift1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lift1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lift2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        lift2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    public double getPosition() {
+        return lift1.getCurrentPosition() * 0.5 + lift2.getCurrentPosition() * 0.5;
+    }
+
+    public boolean isOnGround(){
+        return getPosition() < 160.0;
+    }
+
+    public void activity() {
         /*switch (target) {
             case(UP):
                 usefulVector = robot.liftPID.calculation(upPosition, lift1.getCurrentPosition());
@@ -50,7 +66,7 @@ public class Lift implements Standart {
         }
         lift1.setPower(usefulVector);
         lift2.setPower(usefulVector);*/
-        double power = -robot.control.gamepad1.left_trigger + robot.control.gamepad1.right_trigger + 0.1;
+        double power = -robot.control.gamepad1.left_trigger + robot.control.gamepad1.right_trigger + 0.15;
         lift1.setPower(power);
         lift2.setPower(power);
     }

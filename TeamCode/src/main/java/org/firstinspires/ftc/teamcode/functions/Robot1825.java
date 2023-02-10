@@ -65,7 +65,7 @@ public class Robot1825 {
 
     public enum Mode {AUTONOMOUS, DRIVING}
 
-    public Mode ControlMode;
+    public Mode ControlMode = Mode.DRIVING;
 
     public final Standart[] allFunctions;
 

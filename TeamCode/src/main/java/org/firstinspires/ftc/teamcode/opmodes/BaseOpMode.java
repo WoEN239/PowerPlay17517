@@ -25,6 +25,7 @@ public abstract class BaseOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot = new Robot1825(this);
         robot.start();
+        startAction();
         waitForStart();
         mainAction();
         robot.telemetry.opModeTelemetry.addData("Status", "Finished successfully");

@@ -27,7 +27,7 @@ public class Move implements Standart {
     };
 
     public void activity(){
-        if(robot.ControlMode == robot.ControlMode.DRIVING) {
+        if(robot.ControlMode == Robot1825.Mode.DRIVING) {
             vectors[0] = robot.control.getTargetX(); vectors[1] = robot.control.getTargetY();
             vectors[2] = robot.control.getDrivingAngle();
         }

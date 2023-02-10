@@ -85,7 +85,7 @@ public class Position implements Standart {
         DX = encXL.getCurrentPosition() - encXR.getCurrentPosition();
         distanceX0 = (encXL.getCurrentPosition() + encXR.getCurrentPosition()) * encConst * 0.5;
         distanceY0 = encY.getCurrentPosition() * encConst;
-        resetEncoders();
+        //resetEncoders();
     }
 
     private void globalCalculation(){
@@ -106,6 +106,10 @@ public class Position implements Standart {
         encXL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         encXR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         encY.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        encXL.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        encXR.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        encY.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
 
     private void resetVar(){

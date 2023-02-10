@@ -7,7 +7,6 @@ public class TeleOpOneGamepad extends HandControlOpMode{
 
     @Override
     public void mainAction(){
-        robot.start();
         while (opModeIsActive()) {
             super.mainAction();
         }

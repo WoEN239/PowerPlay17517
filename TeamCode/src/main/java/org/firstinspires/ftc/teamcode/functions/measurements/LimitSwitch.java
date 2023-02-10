@@ -15,7 +15,7 @@ public class LimitSwitch implements Standart {
 
     public void start(){
         for(int i = 0; i < 6; i++) {
-            digitalChannels[i] = robot.linearOpMode.hardwareMap.get(DigitalChannel .class, names[i]);
+            digitalChannels[i] = robot.linearOpMode.hardwareMap.get(DigitalChannel.class, names[i]);
             digitalChannels[i].setMode(DigitalChannel.Mode.INPUT);
         }
     };
