@@ -27,10 +27,11 @@ public class ServoFunctions implements Standart {
 
     //13.5 243
     public static double KPositionClosed = 195.0;
+    public static double KPositionStart = 120.0;
     public static double KPositionOpened = 159.3;
     public static double ExPositionSemiExtruded = 86.4;
     public static double ExPositionExtruded = 70.0;
-    public static double ExPositionStart = 200.0;
+    public static double ExPositionStart = 175.0;
     public static double ExPositionAboveFloor = 230.0;
     public static double ExPositionNonExtruded = 247.0;
     public static double TPositionNormal = 1;
@@ -46,8 +47,8 @@ public class ServoFunctions implements Standart {
 
     public static final ElapsedTime loopTimer = new ElapsedTime();
 
-    private double[] servoPositionTargets = {KPositionClosed, ExPositionStart, TPositionNormal};
-    private double[] servoPositionsApprox = {KPositionClosed, ExPositionStart, TPositionNormal};
+    private double[] servoPositionTargets = {KPositionStart, ExPositionStart, TPositionNormal};
+    private double[] servoPositionsApprox = {KPositionStart, ExPositionStart, TPositionNormal};
 
 
     private static final double KEEPER_SERVO_SPEED = 0.25; /* sec/60deg */
